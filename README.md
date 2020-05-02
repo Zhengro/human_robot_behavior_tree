@@ -8,8 +8,8 @@ A ROS package that involves implementations of behavior trees for several human-
   - [Installation of xdot and rqt_dot](#installation-of-xdot-and-rqt_dot) (optional)
   - [Installation of kinect_tag_detection](#installation-of-kinect_tag_detection)
 - [Update and test](#update-and-test)
-  - Update(#update)
-  - Test(#test)
+  - [Update](#update)
+  - [Test](#test)
 - [Scenarios](#scenarios)
 
 ## Requirements
@@ -45,6 +45,7 @@ source ~/catkin_ws/devel/setup.bash                                # Source the 
 Some condition nodes of the behavior trees will be formed with information from [kinect_tag_detection](https://github.com/Zhengro/kinect_tag_detection). Follow the link to get it ready.
 
 ## Update and test
+
 ### Update
 Modified versions of node implementations (e.g., [fallback_node_with_memory.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/fallback_node_with_memory.cpp) and [sequence_node_with_memory.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/sequence_node_with_memory.cpp)) will be used instead of the original ones. They are available in the folder with name as before [behavior_tree_core](https://github.com/Zhengro/human_robot_behavior_tree/tree/master/behavior_tree_core). Download and update that folder:
 ```
