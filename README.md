@@ -7,14 +7,17 @@ A ROS package that involves implementations of behavior trees for several human-
   - [Installation of behavior_tree_core](#installation-of-behavior_tree_core)
   - [Installation of xdot and rqt_dot](#installation-of-xdot-and-rqt_dot) (optional)
   - [Installation of kinect_tag_detection](#installation-of-kinect_tag_detection)
-- [Usage](#usage)
+- [Update and test](#update-and-test)
+  - Update(#update)
+  - Test(#test)
+- [Scenarios](#scenarios)
 
 ## Requirements
 * To Do
 
 ## Installation
 ### Installation of behavior_tree_core
-[behavior_tree_core](https://github.com/miccol/ROS-Behavior-Tree) is a ROS behavior tree library that supports behavior tree nodes like fallback (selector), sequence, etc. Some parts of it will be reused with some modifications in this package. To install it:
+**behavior_tree_core** is a ROS package in the library [ROS-Behavior-Tree](https://github.com/miccol/ROS-Behavior-Tree) that supports behavior tree nodes like fallback (selector), sequence, etc. Some parts of it will be modified to be used in this project. To install it:
 ```
 export ROS_DISTRO=indigo                                           # Set this to your distro
 source /opt/ros/$ROS_DISTRO/setup.bash                             # Source your ROS distro 
@@ -39,14 +42,54 @@ source ~/catkin_ws/devel/setup.bash                                # Source the 
 ```
 
 ### Installation of kinect_tag_detection
-Some condition nodes of the behavior trees can be formed with information from [kinect_tag_detection](https://github.com/Zhengro/kinect_tag_detection). Follow the link to get it ready.
+Some condition nodes of the behavior trees will be formed with information from [kinect_tag_detection](https://github.com/Zhengro/kinect_tag_detection). Follow the link to get it ready.
 
-## Usage
-Modified versions of node implementations will be used. They are available in the folder [behavior_tree_core](). Download and update the corresponding folder. 
+## Update and test
+### Update
+Modified versions of node implementations (e.g., [fallback_node_with_memory.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/fallback_node_with_memory.cpp) and [sequence_node_with_memory.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/sequence_node_with_memory.cpp)) will be used instead of the original ones. They are available in the folder with name as before [behavior_tree_core](https://github.com/Zhengro/human_robot_behavior_tree/tree/master/behavior_tree_core). Download and update that folder:
+```
+cd ~/catkin_ws/src/ROS-Behavior-Tree/                              # Navigate to the original folder
+rm -rf ./behavior_tree_core                                        # Remove the original folder
+git clone https://github.com/Zhengro/human_robot_behavior_tree.git # Retrieve the updated folder
+mv ./human_robot_behavior_tree/behavior_tree_core .                # Update the folder
+cd ~/catkin_ws                                                     # Navigate to the workspace
+catkin build behavior_tree_core                                    # Build behavior_tree_core
+source ~/catkin_ws/devel/setup.bash                                # Source the generated setup file
+```
+Remember to run the following three lines on every new shell you open or add them to your .bashrc:
+```
+export ROS_DISTRO=indigo
+source /opt/ros/$ROS_DISTRO/setup.bash
+source ~/catkin_ws/devel/setup.bash
+```
+### Test
+An example of behavior tree for testing is given by [tree.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/tree.cpp). Follow the steps to run that behavior tree:
 
+1. Open a terminal and make sure that a roscore is up and running:
+```
+roscore
+```
+2. Open a second terminal to prepare rqt_dot for visualizing the tree by subscribing to the topic /bt_dotcode:
+```
+rosrun rqt_dot rqt_dot
+```
+3. Open a third terminal for executing the tree:
+```
+rosrun behavior_tree_core tree
+```
+When test is done, press Ctrl-C to terminate each terminal.
 
+## Scenarios
 
+### Simple scenario: simple packing
+#### Only tag info
+This is the baseline in the simple scenario that only uses tag info as conditions for directing robot motions. Thus, a behavior tree with only tag info is built in [BT_Scenario1_OnlyTagInfo.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/BT_Scenario1_OnlyTagInfo.cpp). Follow the first two steps in [Test](#test) and then open a third terminal for executing the tree:
+```
+rosrun behavior_tree_core BT_Scenario1_OnlyTagInfo
+```
 
+#### Both tag info and prediction model
+To do
 
-
-
+### Demonstration scenario: packing
+To do
