@@ -21,6 +21,12 @@ add_action_files(
 )
 
 
+add_message_files(
+  FILES
+  TagInfo.msg
+)
+
+
 generate_messages(
   DEPENDENCIES actionlib_msgs std_msgs # Or other packages containing msgs
 )
@@ -29,7 +35,7 @@ generate_messages(
 add_definitions(-Wall -lglut -lGL -std=c++0x)
 
 catkin_package(
-  CATKIN_DEPENDS actionlib_msgs
+  CATKIN_DEPENDS actionlib_msgs message_runtime
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
 )
@@ -100,6 +106,8 @@ src/conditions/condition_node_big_box.cpp
 src/actions/ros_action.cpp
 src/conditions/ros_condition.cpp
 src/dot_bt.cpp
+src/taginfo_subscriber.cpp
+src/global_taginfo.cpp
 )
 
 # Compile the core library with name ${PROJECT_NAME}=behavior_tree_core

@@ -12,6 +12,7 @@
 
 
 #include <behavior_tree.h>
+#include <global_taginfo.h>
 
 
 int main(int argc, char **argv)

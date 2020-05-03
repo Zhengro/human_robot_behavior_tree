@@ -13,6 +13,7 @@
 
 #include <conditions/condition_node_enter_target_areas.h>
 #include <string>
+#include <global_taginfo.h>
 
 BT::ConditionNodeEnterTargetAreas::ConditionNodeEnterTargetAreas(std::string name) : ConditionNode::ConditionNode(name)
 {
@@ -30,10 +31,8 @@ BT::ReturnStatus BT::ConditionNodeEnterTargetAreas::Tick()
             return BT::EXIT;
         }
 
-	// To Do: implement a function to subscribe the tag info, if the tag enters the target areas, set boolean_value_ = true; otherwise false.
-
         // Condition checking and state update
-        if (boolean_value_)
+        if (g_enter_target_areas)
         {
             set_status(BT::SUCCESS);
             std::cout << get_name() << " returning Success " << BT::SUCCESS << "!" << std::endl;

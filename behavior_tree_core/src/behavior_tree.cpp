@@ -13,7 +13,9 @@
 
 #include<behavior_tree.h>
 #include <dot_bt.h>
+#include <taginfo_subscriber.h>
 #include <ros/ros.h>
+#include <global_taginfo.h>
 
 
 void Execute(BT::ControlNode* root, int TickPeriod_milliseconds)
@@ -24,6 +26,8 @@ void Execute(BT::ControlNode* root, int TickPeriod_milliseconds)
     t2.detach();
     BT::DotBt dotbt(root);
     std::thread t(&BT::DotBt::publish, dotbt);
+    BT::TagInfoSubscriber taginfo_sub;
+    std::thread t3(&BT::TagInfoSubscriber::subscribe, taginfo_sub);
 
     root->ResetColorState();				// control_node.cpp
 

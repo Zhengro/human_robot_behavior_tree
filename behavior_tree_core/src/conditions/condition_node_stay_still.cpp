@@ -13,6 +13,7 @@
 
 #include <conditions/condition_node_stay_still.h>
 #include <string>
+#include <global_taginfo.h>
 
 BT::ConditionNodeStayStill::ConditionNodeStayStill(std::string name) : ConditionNode::ConditionNode(name)
 {
@@ -30,10 +31,8 @@ BT::ReturnStatus BT::ConditionNodeStayStill::Tick()
             return BT::EXIT;
         }
 
-	// To Do: implement a function to subscribe the tag info, if it stays still, set boolean_value_ = true, otherwise boolean_value_ = false.
-
         // Condition checking and state update
-        if (boolean_value_)
+        if (g_stay_still)
         {
             set_status(BT::SUCCESS);
             std::cout << get_name() << " returning Success " << BT::SUCCESS << "!" << std::endl;

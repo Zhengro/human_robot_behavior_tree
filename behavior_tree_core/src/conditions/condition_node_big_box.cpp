@@ -13,6 +13,7 @@
 
 #include <conditions/condition_node_big_box.h>
 #include <string>
+#include <global_taginfo.h>
 
 BT::ConditionNodeBigBox::ConditionNodeBigBox(std::string name) : ConditionNode::ConditionNode(name)
 {
@@ -29,11 +30,9 @@ BT::ReturnStatus BT::ConditionNodeBigBox::Tick()
             // The behavior tree is going to be destroied
             return BT::EXIT;
         }
-	
-	// To Do: Implement a function to subsribe the tag info, if box is big, set boolean_value_ = true; otherwise, boolean_value_ = false.
 
         // Condition checking and state update
-        if (boolean_value_)
+        if (1 - g_small_box)
         {
             set_status(BT::SUCCESS);
             std::cout << get_name() << " returning Success " << BT::SUCCESS << "!" << std::endl;

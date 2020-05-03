@@ -13,6 +13,7 @@
 
 #include <conditions/condition_node_small_box.h>
 #include <string>
+#include <global_taginfo.h>
 
 BT::ConditionNodeSmallBox::ConditionNodeSmallBox(std::string name) : ConditionNode::ConditionNode(name)
 {
@@ -30,10 +31,8 @@ BT::ReturnStatus BT::ConditionNodeSmallBox::Tick()
             return BT::EXIT;
         }
 
-	// To Do: Implement a function to subsribe the tag info, if box is small, set boolean_value_ = true; otherwise, boolean_value_ = false.
-
         // Condition checking and state update
-        if (boolean_value_)
+        if (g_small_box)
         {
             set_status(BT::SUCCESS);
             std::cout << get_name() << " returning Success " << BT::SUCCESS << "!" << std::endl;

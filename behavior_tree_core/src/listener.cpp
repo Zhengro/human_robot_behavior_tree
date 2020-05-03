@@ -1,12 +1,12 @@
 #include "ros/ros.h"
-#include "std_msgs/String.h"
+#include "behavior_tree_core/TagInfo.h"
 
 /**
  * This tutorial demonstrates simple receipt of messages over the ROS system.
  */
-void chatterCallback(const std_msgs::String::ConstPtr& msg)
+void chatterCallback(const behavior_tree_core::TagInfo::ConstPtr& msg)
 {
-  ROS_INFO("I heard: [%s]", msg->data.c_str());
+  ROS_INFO("%d", msg->enter_target_areas);
 }
 
 int main(int argc, char **argv)
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
    * is the number of messages that will be buffered up before beginning to throw
    * away the oldest ones.
    */
-  ros::Subscriber sub = n.subscribe("/bt_dotcode", 1000, chatterCallback);
+  ros::Subscriber sub = n.subscribe("/tag_info", 1000, chatterCallback);
 
   /**
    * ros::spin() will enter a loop, pumping callbacks.  With this version, all
