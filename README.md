@@ -47,7 +47,7 @@ Some condition nodes of the behavior trees will be formed with information from 
 ## Update and test
 
 ### Update
-Modified versions of node implementations (e.g., [fallback_node_with_memory.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/fallback_node_with_memory.cpp) and [sequence_node_with_memory.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/sequence_node_with_memory.cpp)) will be used instead of the original ones. They are available in the folder with name as before [behavior_tree_core](https://github.com/Zhengro/human_robot_behavior_tree/tree/master/behavior_tree_core). Download and update that folder:
+Modified versions of node implementations (e.g., [fallback_node_with_memory.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/fallback_node_with_memory.cpp) and [sequence_node_with_memory.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/sequence_node_with_memory.cpp)) will be used instead of the original ones. They are available in the folder with the same name as before [behavior_tree_core](https://github.com/Zhengro/human_robot_behavior_tree/tree/master/behavior_tree_core). Download and update that folder:
 ```
 cd ~/catkin_ws/src/ROS-Behavior-Tree/                              # Navigate to the original folder
 rm -rf ./behavior_tree_core                                        # Remove the original folder
