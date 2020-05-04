@@ -64,7 +64,7 @@ source /opt/ros/$ROS_DISTRO/setup.bash
 source ~/catkin_ws/devel/setup.bash
 ```
 ### Test
-An example of behavior tree for testing is given by [tree.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/tree.cpp). Follow the steps to run that behavior tree:
+An example of behavior tree for testing is given by [tree.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/tree.cpp) (It doesn't require to install **kinect_tag_detection**). Follow the steps to run that behavior tree:
 
 1. Open a terminal and make sure that a roscore is up and running:
 ```
@@ -84,7 +84,7 @@ When test is done, press Ctrl-C to terminate each terminal.
 
 ### Simple scenario: simple packing
 #### Only tag info
-This is the baseline method in the simple scenario that only uses tag info as conditions for directing robot motions. Thus, a behavior tree with only tag info is built in [BT_Scenario1_OnlyTagInfo.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/BT_Scenario1_OnlyTagInfo.cpp). Follow the first two steps in [Test](#test) and then open a third terminal for executing the tree:
+This is the baseline method in the simple scenario that only uses tag info as conditions for directing robot motions. Thus, a behavior tree with only tag info is built in [BT_Scenario1_OnlyTagInfo.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/BT_Scenario1_OnlyTagInfo.cpp) (**kinect_tag_detection** must be installed beforehand). Follow the first two steps in [Test](#test) and then open a third terminal for executing the tree:
 ```
 rosrun behavior_tree_core BT_Scenario1_OnlyTagInfo
 ```
