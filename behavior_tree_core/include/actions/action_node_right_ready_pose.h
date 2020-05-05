@@ -11,44 +11,29 @@
 */
 
 
-#include <conditions/condition_node_small_box.h>
+#ifndef ACTIONS_ACTION_NODE_RIGHT_READY_POSE_H
+#define ACTIONS_ACTION_NODE_RIGHT_READY_POSE_H
+
+#include <action_node.h>
 #include <string>
-#include <global_info.h>
-
-BT::ConditionNodeSmallBox::ConditionNodeSmallBox(std::string name) : ConditionNode::ConditionNode(name)
+namespace BT
 {
-    type_ = BT::CONDITION_NODE;
-    boolean_value_ = false;
-}
-
-BT::ConditionNodeSmallBox::~ConditionNodeSmallBox() {}
-
-BT::ReturnStatus BT::ConditionNodeSmallBox::Tick()
+class ActionNodeRightReadyPose : public ActionNode
 {
-        if (get_status() == BT::EXIT)
-        {
-            // The behavior tree is going to be destroied
-            return BT::EXIT;
-        }
+public:
+    // Constructor
+    explicit ActionNodeRightReadyPose(std::string Name);
+    ~ActionNodeRightReadyPose();
 
-        // Condition checking and state update
-        if (g_small_box)
-        {
-            set_status(BT::SUCCESS);
-            std::cout << get_name() << " returning Success " << BT::SUCCESS << "!" << std::endl;
-            return BT::SUCCESS;
-        }
-        else
-        {
-            set_status(BT::FAILURE);
-            std::cout << get_name() << " returning Failure " << BT::FAILURE << "!" << std::endl;
-            return BT::FAILURE;
-        }
-}
+    void WaitForTick();
+    void set_time(int time);
 
+    void Halt();
+    void set_boolean_value(bool boolean_value);
+private:
+    int time_;
+    bool boolean_value_;
+};
+}  // namespace BT
 
-void BT::ConditionNodeSmallBox::set_boolean_value(bool boolean_value)
-{
-    boolean_value_ = boolean_value;
-}
-
+#endif  // ACTIONS_ACTION_NODE_RIGHT_READY_POSE_H

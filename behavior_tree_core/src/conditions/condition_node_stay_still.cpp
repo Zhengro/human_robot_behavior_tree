@@ -13,7 +13,7 @@
 
 #include <conditions/condition_node_stay_still.h>
 #include <string>
-#include <global_taginfo.h>
+#include <global_info.h>
 
 BT::ConditionNodeStayStill::ConditionNodeStayStill(std::string name) : ConditionNode::ConditionNode(name)
 {
@@ -32,7 +32,7 @@ BT::ReturnStatus BT::ConditionNodeStayStill::Tick()
         }
 
         // Condition checking and state update
-        if (g_stay_still)
+        if (boolean_value_)  // g_stay_still
         {
             set_status(BT::SUCCESS);
             std::cout << get_name() << " returning Success " << BT::SUCCESS << "!" << std::endl;

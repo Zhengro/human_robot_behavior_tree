@@ -18,7 +18,7 @@
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "BT_Scenario1_OnlyTagInfo");
+    ros::init(argc, argv, "BT_Scenario1_HumanMotion");
     try
     {
         int TickPeriod_milliseconds = 1000;
@@ -30,32 +30,51 @@ int main(int argc, char **argv)
 	// Build the behavior tree
 	BT::SequenceNodeWithMemory* sequence1 = new BT::SequenceNodeWithMemory("Seq1");
 
-	BT::ConditionNodeEnterTargetAreas* condition1 = new BT::ConditionNodeEnterTargetAreas("Con1");
+	BT::ConditionNodePredictSteadyBoxSize* condition1 = new BT::ConditionNodePredictSteadyBoxSize("Con1");
 	BT::SequenceNodeWithMemory* sequence2 = new BT::SequenceNodeWithMemory("Seq2");
-	BT::ConditionNodeStayStill* condition2 = new BT::ConditionNodeStayStill("Con2");
+	BT::ConditionNodePredictSteadyBoxPosition* condition2 = new BT::ConditionNodePredictSteadyBoxPosition("Con2");
+	BT::SequenceNodeWithMemory* sequence3 = new BT::SequenceNodeWithMemory("Seq3");
+	BT::ConditionNodeStayStill* condition3 = new BT::ConditionNodeStayStill("Con3");
 	BT::ActionNodePutObject* action1 = new BT::ActionNodePutObject("Act1");
 
 	BT::FallbackNodeWithMemory* fallback1 = new BT::FallbackNodeWithMemory("Fal1");
 	BT::FallbackNodeWithMemory* fallback2 = new BT::FallbackNodeWithMemory("Fal2");
+	BT::FallbackNodeWithMemory* fallback3 = new BT::FallbackNodeWithMemory("Fal3");	
+	BT::FallbackNodeWithMemory* fallback4 = new BT::FallbackNodeWithMemory("Fal4");
 
-	BT::ConditionNodeSmallBox* condition3 = new BT::ConditionNodeSmallBox("Con3");
+	BT::ConditionNodePredictSmallBox* condition4 = new BT::ConditionNodePredictSmallBox("Con4");
 	BT::ActionNodePickBigObject* action2 = new BT::ActionNodePickBigObject("Act2");
-	BT::ConditionNodeBigBox* condition4 = new BT::ConditionNodeBigBox("Con4");
+	BT::ConditionNodePredictBigBox* condition5 = new BT::ConditionNodePredictBigBox("Con5");
 	BT::ActionNodePickSmallObject* action3 = new BT::ActionNodePickSmallObject("Act3");
+
+	BT::ConditionNodePredictBoxOnLeft* condition6 = new BT::ConditionNodePredictBoxOnLeft("Con6");
+	BT::ActionNodeRightReadyPose* action4 = new BT::ActionNodeRightReadyPose("Act4");
+	BT::ConditionNodePredictBoxOnRight* condition7 = new BT::ConditionNodePredictBoxOnRight("Con7");
+	BT::ActionNodeLeftReadyPose* action5 = new BT::ActionNodeLeftReadyPose("Act5");
 
 	sequence1->AddChild(condition1);
 	sequence1->AddChild(sequence2);
 	sequence1->AddChild(condition2);
+	sequence1->AddChild(sequence3);
+	sequence1->AddChild(condition3);
 	sequence1->AddChild(action1);
 
 	sequence2->AddChild(fallback1);
 	sequence2->AddChild(fallback2);
+	sequence3->AddChild(fallback3);
+	sequence3->AddChild(fallback4);
 
-	fallback1->AddChild(condition3);
+	fallback1->AddChild(condition4);
 	fallback1->AddChild(action2);
 
-	fallback2->AddChild(condition4);
+	fallback2->AddChild(condition5);
 	fallback2->AddChild(action3);
+
+	fallback3->AddChild(condition6);
+	fallback3->AddChild(action4);
+
+	fallback4->AddChild(condition7);
+	fallback4->AddChild(action5);
 
         Execute(sequence1, TickPeriod_milliseconds);  // behavior_tree.cpp
     }

@@ -24,6 +24,7 @@ add_action_files(
 add_message_files(
   FILES
   TagInfo.msg
+  HumanMotionInfo.msg
 )
 
 
@@ -99,15 +100,23 @@ src/conditions/condition_test_node.cpp
 src/actions/action_node_put_object.cpp
 src/actions/action_node_pick_small_object.cpp
 src/actions/action_node_pick_big_object.cpp
+src/actions/action_node_left_ready_pose.cpp
+src/actions/action_node_right_ready_pose.cpp
 src/conditions/condition_node_enter_target_areas.cpp
 src/conditions/condition_node_stay_still.cpp
 src/conditions/condition_node_small_box.cpp
 src/conditions/condition_node_big_box.cpp
+src/conditions/condition_node_predict_steady_box_size.cpp
+src/conditions/condition_node_predict_steady_box_position.cpp
+src/conditions/condition_node_predict_big_box.cpp
+src/conditions/condition_node_predict_small_box.cpp
+src/conditions/condition_node_predict_box_on_left.cpp
+src/conditions/condition_node_predict_box_on_right.cpp
 src/actions/ros_action.cpp
 src/conditions/ros_condition.cpp
 src/dot_bt.cpp
-src/taginfo_subscriber.cpp
-src/global_taginfo.cpp
+src/info_subscriber.cpp
+src/global_info.cpp
 )
 
 # Compile the core library with name ${PROJECT_NAME}=behavior_tree_core
@@ -118,6 +127,11 @@ add_dependencies(${PROJECT_NAME} behavior_tree_core_generate_messages_cpp)
 
 add_executable(BT_Scenario1_OnlyTagInfo src/BT_Scenario1_OnlyTagInfo.cpp)
 target_link_libraries(BT_Scenario1_OnlyTagInfo
+  ${catkin_LIBRARIES}
+  ${PROJECT_NAME})
+
+add_executable(BT_Scenario1_HumanMotion src/BT_Scenario1_HumanMotion.cpp)
+target_link_libraries(BT_Scenario1_HumanMotion
   ${catkin_LIBRARIES}
   ${PROJECT_NAME})
 

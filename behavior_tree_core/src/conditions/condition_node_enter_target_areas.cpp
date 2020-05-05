@@ -13,7 +13,7 @@
 
 #include <conditions/condition_node_enter_target_areas.h>
 #include <string>
-#include <global_taginfo.h>
+#include <global_info.h>
 
 BT::ConditionNodeEnterTargetAreas::ConditionNodeEnterTargetAreas(std::string name) : ConditionNode::ConditionNode(name)
 {

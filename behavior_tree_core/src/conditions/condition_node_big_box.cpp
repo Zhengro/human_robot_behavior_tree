@@ -13,7 +13,7 @@
 
 #include <conditions/condition_node_big_box.h>
 #include <string>
-#include <global_taginfo.h>
+#include <global_info.h>
 
 BT::ConditionNodeBigBox::ConditionNodeBigBox(std::string name) : ConditionNode::ConditionNode(name)
 {

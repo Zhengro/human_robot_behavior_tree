@@ -11,19 +11,19 @@
 */
 
 
-#include <conditions/condition_node_small_box.h>
+#include <conditions/condition_node_predict_steady_box_position.h>
 #include <string>
 #include <global_info.h>
 
-BT::ConditionNodeSmallBox::ConditionNodeSmallBox(std::string name) : ConditionNode::ConditionNode(name)
+BT::ConditionNodePredictSteadyBoxPosition::ConditionNodePredictSteadyBoxPosition(std::string name) : ConditionNode::ConditionNode(name)
 {
     type_ = BT::CONDITION_NODE;
-    boolean_value_ = false;
+    boolean_value_ = true;
 }
 
-BT::ConditionNodeSmallBox::~ConditionNodeSmallBox() {}
+BT::ConditionNodePredictSteadyBoxPosition::~ConditionNodePredictSteadyBoxPosition() {}
 
-BT::ReturnStatus BT::ConditionNodeSmallBox::Tick()
+BT::ReturnStatus BT::ConditionNodePredictSteadyBoxPosition::Tick()
 {
         if (get_status() == BT::EXIT)
         {
@@ -32,7 +32,7 @@ BT::ReturnStatus BT::ConditionNodeSmallBox::Tick()
         }
 
         // Condition checking and state update
-        if (g_small_box)
+        if (boolean_value_)  // g_predict_steady_box_position
         {
             set_status(BT::SUCCESS);
             std::cout << get_name() << " returning Success " << BT::SUCCESS << "!" << std::endl;
@@ -47,8 +47,7 @@ BT::ReturnStatus BT::ConditionNodeSmallBox::Tick()
 }
 
 
-void BT::ConditionNodeSmallBox::set_boolean_value(bool boolean_value)
+void BT::ConditionNodePredictSteadyBoxPosition::set_boolean_value(bool boolean_value)
 {
     boolean_value_ = boolean_value;
 }
-

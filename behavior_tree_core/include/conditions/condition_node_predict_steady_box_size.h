@@ -11,44 +11,26 @@
 */
 
 
-#include <conditions/condition_node_small_box.h>
+#ifndef CONDITIONS_CONDITION_NODE_PREDICT_STEADY_BOX_SIZE_H
+#define CONDITIONS_CONDITION_NODE_PREDICT_STEADY_BOX_SIZE_H
+
+#include <condition_node.h>
 #include <string>
-#include <global_info.h>
 
-BT::ConditionNodeSmallBox::ConditionNodeSmallBox(std::string name) : ConditionNode::ConditionNode(name)
+namespace BT
 {
-    type_ = BT::CONDITION_NODE;
-    boolean_value_ = false;
-}
-
-BT::ConditionNodeSmallBox::~ConditionNodeSmallBox() {}
-
-BT::ReturnStatus BT::ConditionNodeSmallBox::Tick()
+class ConditionNodePredictSteadyBoxSize : public ConditionNode
 {
-        if (get_status() == BT::EXIT)
-        {
-            // The behavior tree is going to be destroied
-            return BT::EXIT;
-        }
+public:
+    // Constructor
+    explicit ConditionNodePredictSteadyBoxSize(std::string Name);
+    ~ConditionNodePredictSteadyBoxSize();
+    void set_boolean_value(bool boolean_value);
 
-        // Condition checking and state update
-        if (g_small_box)
-        {
-            set_status(BT::SUCCESS);
-            std::cout << get_name() << " returning Success " << BT::SUCCESS << "!" << std::endl;
-            return BT::SUCCESS;
-        }
-        else
-        {
-            set_status(BT::FAILURE);
-            std::cout << get_name() << " returning Failure " << BT::FAILURE << "!" << std::endl;
-            return BT::FAILURE;
-        }
-}
+    BT::ReturnStatus Tick();
+private:
+    bool boolean_value_;
+};
+}  // namespace BT
 
-
-void BT::ConditionNodeSmallBox::set_boolean_value(bool boolean_value)
-{
-    boolean_value_ = boolean_value;
-}
-
+#endif  // CONDITIONS_CONDITION_NODE_PREDICT_STEADY_BOX_SIZE_H

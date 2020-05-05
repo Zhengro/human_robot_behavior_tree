@@ -39,11 +39,18 @@
 #include <actions/action_node_put_object.h>
 #include <actions/action_node_pick_small_object.h>
 #include <actions/action_node_pick_big_object.h>
+#include <actions/action_node_left_ready_pose.h>
+#include <actions/action_node_right_ready_pose.h>
 #include <conditions/condition_node_enter_target_areas.h>
 #include <conditions/condition_node_stay_still.h>
 #include <conditions/condition_node_small_box.h>
 #include <conditions/condition_node_big_box.h>
-
+#include <conditions/condition_node_predict_steady_box_size.h>
+#include <conditions/condition_node_predict_steady_box_position.h>
+#include <conditions/condition_node_predict_big_box.h>
+#include <conditions/condition_node_predict_small_box.h>
+#include <conditions/condition_node_predict_box_on_left.h>
+#include <conditions/condition_node_predict_box_on_right.h>
 
 #include <exceptions.h>
 
