@@ -89,7 +89,7 @@ This is the baseline method in the simple scenario that only uses tag info as co
 rosrun behavior_tree_core BT_Scenario1_OnlyTagInfo
 ```
 
-#### Both tag info and prediction model
+#### Human motion info
 This is our method in the simple scenario that integrates human motion info in the behavior tree to control robot motions more effeciently. The new behavior tree is built in [BT_Scenario1_HumanMotion.cpp](https://github.com/Zhengro/human_robot_behavior_tree/blob/master/behavior_tree_core/src/BT_Scenario1_HumanMotion.cpp). Follow the first two steps in [Test](#test) and then open a third terminal for executing the tree:
 ```
 rosrun behavior_tree_core BT_Scenario1_HumanMotion
